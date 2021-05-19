@@ -32,9 +32,7 @@ public:
     AABB box;
 
     // End is not inclusive.
-    void build(const std::vector<Object*>& objects, int start, int end){
-        auto lobjects = objects; // Local copy of objects, that can be sorted.
-
+    void build(std::vector<Object*>& objects, int start, int end){
         int axis = randomInt(0, 2);
         auto compar = compareX;
         if( axis == 1 ) compar = compareY;
@@ -43,21 +41,21 @@ public:
         int len = end - start;
         if(len == 1) {
             // Add to both children, because we don't check for null children in intersect.
-            left = lobjects[start];
-            right = lobjects[start];
+            left = objects[start];
+            right = objects[start];
         }else {
-            std::sort(lobjects.begin() + start, lobjects.begin() + end, compar);
+            std::sort(objects.begin() + start, objects.begin() + end, compar);
 
             int mid = start + len / 2;
 
             if (len == 2) {
-                left = lobjects[start];
-                right = lobjects[start + 1];
+                left = objects[start];
+                right = objects[start + 1];
             } else {
                 left = new BVHnode;
-                left->build(lobjects, start, mid);
+                left->build(objects, start, mid);
                 right = new BVHnode;
-                right->build(lobjects, mid, end);
+                right->build(objects, mid, end);
             }
         }
 

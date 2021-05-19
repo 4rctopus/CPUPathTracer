@@ -35,7 +35,7 @@ public:
     virtual bool getAABB(AABB& aabb) const = 0;
 
     // Bounding volume hierarchy building.
-    virtual void build(const std::vector<Object*>& objects, int start, int end){}
+    virtual void build(std::vector<Object*>& objects, int start, int end){}
     virtual bool destroy(){ return false; }; // Only BVHnodes have to be deallocated.
     virtual int getDepth(){ return 0;}
 

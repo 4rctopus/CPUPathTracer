@@ -168,6 +168,13 @@ public:
         dragon.add(materials["yellow"], objects, glm::vec3(0, 0.0, 0), glm::vec3(0.2), 3.14/2, 2*3.14/3);
     }
 
+    void initCornellBoxPanther(){
+        initCornellBoxSides();
+        Model panther;
+        panther.loadOBJ("panther.obj");
+        panther.add(materials["yellow"], objects, glm::vec3(0, 0, 1), glm::vec3(0.6), 3.14/2, 2*3.14/4.0);
+    }
+
     void initCornellBoxGlassDragon(){
         initCornellBoxSides();
         Model dragon;
@@ -225,6 +232,7 @@ public:
         initFunctions["cornell box glass dragon"] = &Trace::initCornellBoxGlassDragon;
         initFunctions["lit dragon"] = &Trace::initModel;
         initFunctions["direct lights"] = &Trace::initTest;
+        initFunctions["cornell panther"] = &Trace::initCornellBoxPanther;
 
         initCornellBoxDefault();
 
